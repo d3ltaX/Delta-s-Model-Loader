@@ -12,7 +12,8 @@ this will give you a string. this is your model.
 
 
 --]]
-function parsepart(ps)
+LoadMdl = {}
+function LoadMdl.parsepart(ps)
     np = ps:split(":")
     n5ame = np[2]
     ctype = np[1]
@@ -34,7 +35,7 @@ function parsepart(ps)
     gArray.rot = Vector3.new(ox,oy,oz)
     return gArray
 end
-function parsemodelstring(ms)
+function LoadMdl.parsemodelstring(ms)
 --Part:Name:,X,Y,Z,OX,OY,OZ,SX,SY,SZ,~Part:Name:,X,Y,Z,~Part:Name:,X,Y,Z,~
 seperateparts = ms:split("~")
 mArray = {}
@@ -45,7 +46,7 @@ for c=1,#seperateparts-1 do
 end
 return mArray
 end
-function buildmodel(name,array)
+function LoadMdl.buildmodel(name,array)
     model = {}
     for c=1,array.count do
         partv = mArray["part"..c]
@@ -60,3 +61,4 @@ function buildmodel(name,array)
     end
     return model
 end
+return LoadMdl
